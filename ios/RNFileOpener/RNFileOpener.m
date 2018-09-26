@@ -1,5 +1,11 @@
 #import "RNFileOpener.h"
 
+#if __has_include(<React/RCTBridge.h>)
+#import <React/RCTBridge.h>
+#else // back compatibility for RN version < 0.40
+#import "RCTBridge.h"
+#endif
+
 @implementation FileOpener
 
 @synthesize bridge = _bridge;
@@ -11,7 +17,10 @@
 
 RCT_EXPORT_MODULE();
 
-RCT_REMAP_METHOD(open, filePath:(NSString *)filePath fileMine:(NSString *)fileMine fromRect:(CGRectMake)rect
+RCT_REMAP_METHOD(open,
+                 filePath:(NSString *)filePath
+                 fileMine:(NSString *)fileMine
+                 fromRect:(CGRect)rect
                  resolver:(RCTPromiseResolveBlock)resolve
                  rejecter:(RCTPromiseRejectBlock)reject)
 {

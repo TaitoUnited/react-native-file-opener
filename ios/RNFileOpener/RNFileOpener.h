@@ -4,8 +4,6 @@
 #import "RCTBridgeModule.h"
 #endif
 
-#import "RCTBridge.h"
-
 @import UIKit;
 
 @interface FileOpener : NSObject <RCTBridgeModule>
